@@ -9,7 +9,6 @@ import { updateOrderCart } from '../../../../slice/orderSlice'
 const OrderTable = ({ id, items }) => {
   const dispatch = useDispatch()
   const keys = Object.keys(items[0])
-  console.log(items)
   const [modalVisibility, setModalVisibilty] = useState(false)
   const [tableItems, setTableItems] = useState(items)
   // const [visibleTable, setVisibleTable] = useState(items)
@@ -23,9 +22,7 @@ const OrderTable = ({ id, items }) => {
       return item
     })
     setTableItems(updatedItems)
-    dispatch(
-      updateOrderCart({ orderId: id, cartItems: { ...items, ...tableItems } })
-    )
+    dispatch(updateOrderCart({ orderId: id, cartItems: tableItems }))
   }
 
   const handleMissing = (product) => {

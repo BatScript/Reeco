@@ -20,7 +20,7 @@ export const orderSlice = createSlice({
         order.cartItems = cartItems
       }
     }
-  }
+  } 
 })
 
 export const { addOrder, updateOrderCart } = orderSlice.actions
