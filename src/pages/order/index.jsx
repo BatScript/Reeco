@@ -10,13 +10,6 @@ const OrderRoute = () => {
   const orders = useSelector((state) => state.order.orders)
   const thisOrder = orders.find((order) => order.id === Number(id))
 
-  // useEffect(() => {
-  //   if (thisOrder) {
-  //     dispatch(updateCart(thisOrder.cartItems))
-  //     dispatch(updateDetails(thisOrder.details))
-  //   }
-  // }, [dispatch, thisOrder])
-
   return <OrderContainer thisOrder={thisOrder} />
 }
 

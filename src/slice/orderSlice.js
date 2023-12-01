@@ -9,12 +9,20 @@ export const orderSlice = createSlice({
   name: 'order',
   initialState,
   reducers: {
-    updateOrder: (state, action) => {
-      state.orders = action.payload
+    addOrder: (state, action) => {
+      state.push(action.payload)
+    },
+    updateOrderCart: (state, action) => {
+      const { orderId, cartItems } = action.payload
+
+      const order = state.orders.find((order) => order.id === orderId)
+      if (order) {
+        order.cartItems = cartItems
+      }
     }
   }
 })
 
-export const { updateOrder } = orderSlice.actions
+export const { addOrder, updateOrderCart } = orderSlice.actions
 
 export default orderSlice.reducer

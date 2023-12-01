@@ -3,39 +3,60 @@ import { TableStyledWrapper } from './styledTableWrapper'
 import { Check2, X } from 'react-bootstrap-icons'
 import OrderModal from '../Modal'
 import { useSelector, useDispatch } from 'react-redux'
-import { updateOrder } from '../../../../slice/orderSlice'
+import { updateOrderCart } from '../../../../slice/orderSlice'
 // import { updateCart, updateDetails } from '../../../../slice/cartSlice'
 
-const OrderTable = ({ items }) => {
+const OrderTable = ({ id, items }) => {
   const dispatch = useDispatch()
-  const order = useSelector((state) => state.orders)
-  const [clickedProduct, setClickedProduct] = useState('')
   const keys = Object.keys(items[0])
-
+  console.log(items)
   const [modalVisibility, setModalVisibilty] = useState(false)
+  const [tableItems, setTableItems] = useState(items)
+  // const [visibleTable, setVisibleTable] = useState(items)
+  const [clickedProduct, setClickedProduct] = useState('')
+
+  const handleUpdateCommon = async (itemId, type) => {
+    const updatedItems = await items.map((item) => {
+      if (item.id === itemId) {
+        return { ...item, status: type }
+      }
+      return item
+    })
+    setTableItems(updatedItems)
+    dispatch(
+      updateOrderCart({ orderId: id, cartItems: { ...items, ...tableItems } })
+    )
+  }
 
   const handleMissing = (product) => {
     setClickedProduct(product)
     setModalVisibilty(true)
   }
 
-  const setMissing = () => {}
+  const setMissing = (type, itemId) => {
+    handleUpdateCommon(itemId, type)
+    setModalVisibilty(false)
+  }
 
   const setApproved = (itemId) => {
-    const updatedItems = items.map((item) => {
-      if (item.id === itemId) {
-        return { ...item, status: 'approved' }
-      }
-      return item
-    })
-    dispatch(updateOrder({...orders, updatedItems}))
+    handleUpdateCommon(itemId, 'approved')
+    setModalVisibilty(false)
   }
+
+  const searchHandler = (e) => {
+    const query = e.target.value.toLowerCase()
+    const results = items.filter((item) =>
+      item.description.toLowerCase().includes(query)
+    )
+    setTableItems(results)
+  }
+
   return (
     <>
       <TableStyledWrapper>
         <div className="tableNav">
           <div>
-            <input placeholder="Search Items..." />
+            <input placeholder="Search Items..." onChange={searchHandler} />
           </div>
           <div>
             <button className="bordered">Add Item</button>
@@ -51,7 +72,7 @@ const OrderTable = ({ items }) => {
               </tr>
             </thead>
             <tbody>
-              {items.map((item, index) => (
+              {tableItems.map((item, index) => (
                 <tr key={index}>
                   <td>{item.id}</td>
                   <td>{item.description}</td>
@@ -73,7 +94,7 @@ const OrderTable = ({ items }) => {
                           ? 'red'
                           : 'black'
                       }
-                      onClick={() => handleMissing(item.description)}
+                      onClick={() => handleMissing(item)}
                       height={20}
                       width={20}
                     />

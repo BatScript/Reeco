@@ -12,7 +12,7 @@ const OrderContainer = ({ thisOrder }) => {
         <>
           <OrderHeader id={id} />
           <OrderStatistics details={details} />
-          <OrderTable items={cartItems} />
+          <OrderTable id={id} items={cartItems} />
         </>
       ) : (
         <p>Oops Order Not Found</p>

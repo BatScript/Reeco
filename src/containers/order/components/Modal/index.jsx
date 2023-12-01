@@ -18,14 +18,20 @@ const OrderModal = ({
           <div>
             <p className="header">Missing Product</p>
             <p>
-              Is <b>{clickedProduct}</b> urgent ?{' '}
+              Is <b>{clickedProduct.description}</b> urgent ?
             </p>
           </div>
           <div className="btnContainer">
-            <button className="bordered" onClick={() => setMissing('urgent')}>
+            <button
+              className="bordered"
+              onClick={() => setMissing('missing-urgent', clickedProduct.id)}
+            >
               Yes
             </button>
-            <button className="filled" onClick={() => setMissing(null)}>
+            <button
+              className="filled"
+              onClick={() => setMissing('missing', clickedProduct.id)}
+            >
               No
             </button>
           </div>
