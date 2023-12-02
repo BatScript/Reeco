@@ -16,13 +16,6 @@ export const OrderStyledWrapper = styled.div`
       border: 1px solid black;
       background: transparent;
     }
-    .filled {
-      border-radius: 0.3rem;
-      padding: 0.3rem;
-      border: 1px solid black;
-      background: #333;
-      color: white;
-    }
   }
 
   .leftSection {

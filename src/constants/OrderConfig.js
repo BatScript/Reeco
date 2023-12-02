@@ -12,6 +12,7 @@ export const ORDER = [
     cartItems: [
       {
         id: '1',
+        image: 'https://i.ibb.co/CzVxhvY/Apple-Green-Smith.png',
         description: 'Smartphone',
         quantity: 2,
         price: 599.99,
@@ -21,6 +22,7 @@ export const ORDER = [
       },
       {
         id: '2',
+        image: 'https://i.ibb.co/CzVxhvY/Apple-Green-Smith.png',
         description: 'Laptop',
         quantity: 1,
         price: 1299.99,
@@ -30,6 +32,7 @@ export const ORDER = [
       },
       {
         id: '3',
+        image: 'https://i.ibb.co/CzVxhvY/Apple-Green-Smith.png',
         description: 'Wireless Headphones',
         quantity: 3,
         price: 149.99,
@@ -39,6 +42,7 @@ export const ORDER = [
       },
       {
         id: '4',
+        image: 'https://i.ibb.co/CzVxhvY/Apple-Green-Smith.png',
         description: 'Tablet',
         quantity: 1,
         price: 799.99,
@@ -48,6 +52,7 @@ export const ORDER = [
       },
       {
         id: '5',
+        image: 'https://i.ibb.co/CzVxhvY/Apple-Green-Smith.png',
         description: 'Bluetooth Speaker',
         quantity: 2,
         price: 79.99,

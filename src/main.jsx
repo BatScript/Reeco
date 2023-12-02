@@ -6,6 +6,7 @@ import HomePageRoute from './pages/home'
 import OrderRoute from './pages/order'
 import { Provider } from 'react-redux'
 import { store } from './store/store'
+import { CommonStyledWrapper } from './commonStyleWrapper'
 
 const router = createBrowserRouter([
   {
@@ -21,7 +22,9 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Provider store={store}>
-      <RouterProvider router={router} />
+      <CommonStyledWrapper>
+        <RouterProvider router={router} />
+      </CommonStyledWrapper>
     </Provider>
   </React.StrictMode>
 )

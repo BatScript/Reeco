@@ -14,15 +14,31 @@ export const orderSlice = createSlice({
     },
     updateOrderCart: (state, action) => {
       const { orderId, cartItems } = action.payload
-
-      const order = state.orders.find((order) => order.id === orderId)
+      const order = state.orders.find((o) => o.id === orderId)
       if (order) {
         order.cartItems = cartItems
       }
+    },
+    updateCartItemQuantity: (state, action) => {
+      const { orderId, cartItemId, newQuantity } = action.payload
+      const orderIndex = state.orders.findIndex((order) => order.id === orderId)
+
+      if (orderIndex !== -1) {
+        const cartItemIndex = state.orders[orderIndex].cartItems.findIndex(
+          (item) => item.id === cartItemId
+        )
+
+        if (cartItemIndex !== -1) {
+          let cartItem = state.orders[orderIndex].cartItems[cartItemIndex]
+          cartItem.quantity = newQuantity
+          cartItem.totalPrice = newQuantity * cartItem.price
+        }
+      }
     }
-  } 
+  }
 })
 
-export const { addOrder, updateOrderCart } = orderSlice.actions
+export const { addOrder, updateOrderCart, updateCartItemQuantity } =
+  orderSlice.actions
 
 export default orderSlice.reducer
