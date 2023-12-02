@@ -7,19 +7,13 @@ import { updateOrderCart } from '../../../../slice/orderSlice'
 import EditModal from '../Modal/EditModal'
 
 const OrderTable = ({ id, items }) => {
-  const [originalItems] = useState(items)
   const dispatch = useDispatch()
-  const currentOrderStatus = useSelector((state) => state.order.orders)
   const keys = Object.keys(items[0])
   const [searchQuery, setSearchQuery] = useState('')
   const [editModalVisibility, setEditModalVisibility] = useState(false)
   const [modalVisibility, setModalVisibilty] = useState(false)
   const [tableItems, setTableItems] = useState(items)
   const [clickedProduct, setClickedProduct] = useState('')
-
-  useEffect(() => {
-
-  }, [currentOrderStatus])
 
   const handleUpdateCommon = async (itemId, type) => {
     const updatedItems = await items.map((item) => {
@@ -87,10 +81,10 @@ const OrderTable = ({ id, items }) => {
               </tr>
             </thead>
             <tbody>
-              {tableItems.map((item, index) => (
+              {tableItems?.map((item, index) => (
                 <tr key={index}>
                   <td>{item.id}</td>
-                  <td>
+                  <td height={75}>
                     <img
                       width={70}
                       src={item.image}
@@ -148,7 +142,12 @@ const OrderTable = ({ id, items }) => {
           <EditModal
             modalVisibility={editModalVisibility}
             setModalVisibilty={setEditModalVisibility}
-            details={{ clickedProduct, cartItems: items, currentOrderId: id }}
+            details={{
+              clickedProduct,
+              cartItems: items,
+              currentOrderId: id,
+              setTableItems
+            }}
           />
         </>
       )}

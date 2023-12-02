@@ -7,16 +7,17 @@ import { useDispatch, useSelector } from 'react-redux'
 
 const EditModal = ({ modalVisibility, setModalVisibilty, details }) => {
   const dispatch = useDispatch()
-  const { clickedProduct, currentOrderId } = details
+  const { clickedProduct, currentOrderId, setTableItems } = details
 
   const [itemState, setItemState] = useState(clickedProduct)
   const order = useSelector((state) => state.order.orders)
 
-  const currentItemState = order.find((o) => o.id === currentOrderId).cartItems[
-    clickedProduct.id
-  ]
-
-  console.log(currentItemState)
+  useEffect(() => {
+    const currentItemState = order.find(
+      (o) => o.id === currentOrderId
+    ).cartItems
+    setTableItems(currentItemState)
+  }, [order, currentOrderId])
 
   const { id, description, brand, image, price, totalPrice, quantity } =
     itemState
@@ -40,6 +41,7 @@ const EditModal = ({ modalVisibility, setModalVisibilty, details }) => {
         newQuantity: itemState.quantity
       })
     )
+
     setModalVisibilty(false)
   }
 
