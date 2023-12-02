@@ -1,14 +1,11 @@
 export const ORDER = [
   {
     id: 66,
-    details: [
-      { key: 'id', value: 66 },
-      { key: 'supplierName', value: 'ABC Electronics' },
-      { key: 'shippingDate', value: '2023-12-01' },
-      { key: 'category', value: 'Electronics' },
-      { key: 'department', value: 'Consumer Electronics' },
-      { key: 'status', value: 'Awaiting Approval' }
-    ],
+    supplierName: 'ABC Electronics',
+    shippingDate: '2023-12-01',
+    category: 'Electronics',
+    department: 'Consumer Electronics',
+    status: 'Awaiting Approval',
     cartItems: [
       {
         id: '1',
@@ -58,6 +55,36 @@ export const ORDER = [
         price: 79.99,
         brand: 'GHI',
         totalPrice: 159.98,
+        status: 'pending'
+      }
+    ]
+  },
+  {
+    id: 67,
+    supplierName: 'XYZ Gadgets',
+    shippingDate: '2023-12-05',
+    category: 'Gadgets',
+    department: 'Tech Gadgets',
+    status: 'Processing',
+    cartItems: [
+      {
+        id: '6',
+        image: 'https://i.ibb.co/CzVxhvY/Apple-Green-Smith.png',
+        description: 'Smartwatch',
+        quantity: 1,
+        price: 199.99,
+        brand: 'LMN',
+        totalPrice: 199.99,
+        status: 'pending'
+      },
+      {
+        id: '7',
+        image: 'https://i.ibb.co/CzVxhvY/Apple-Green-Smith.png',
+        description: 'VR Headset',
+        quantity: 2,
+        price: 299.99,
+        brand: 'OPQ',
+        totalPrice: 599.98,
         status: 'pending'
       }
     ]

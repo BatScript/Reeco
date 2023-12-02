@@ -1,7 +1,15 @@
 import React from 'react'
 import { StatisticsStyledWrapper } from './styledStatistics'
 
-const OrderStatistics = ({ details }) => {
+const OrderStatistics = ({ order }) => {
+  const { supplierName, shippingDate, category, department, status } = order
+  const details = [
+    { key: 'supplierName', value: supplierName },
+    { key: 'shippingDate', value: shippingDate },
+    { key: 'category', value: category },
+    { key: 'department', value: department },
+    { key: 'status', value: status }
+  ]
   return (
     <StatisticsStyledWrapper>
       {details.map((stat, index) => {

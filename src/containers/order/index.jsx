@@ -5,13 +5,13 @@ import OrderStatistics from './components/Statistics'
 import OrderTable from './components/Table'
 
 const OrderContainer = ({ thisOrder }) => {
-  const { id, details, cartItems } = thisOrder || false
+  const { id, cartItems } = thisOrder || false
   return (
     <Layout>
-      {details ? (
+      {thisOrder ? (
         <>
           <OrderHeader id={id} />
-          <OrderStatistics details={details} />
+          <OrderStatistics order={thisOrder} />
           <OrderTable id={id} items={cartItems} />
         </>
       ) : (

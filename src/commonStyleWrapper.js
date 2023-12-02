@@ -14,4 +14,11 @@ export const CommonStyledWrapper = styled.div`
     background: #333;
     color: white;
   }
+
+  .shell {
+    border: 1px solid grey;
+    padding: 1rem;
+    margin: 1rem;
+    border-radius: 1rem;
+  }
 `

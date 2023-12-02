@@ -2,7 +2,7 @@ import React from 'react'
 import { OrderStyledWrapper } from './styledOrderHeader'
 import { useParams } from 'react-router-dom'
 
-const OrderHeader = ({id}) => {
+const OrderHeader = ({ id }) => {
   return (
     <OrderStyledWrapper>
       <div className="leftSection">
